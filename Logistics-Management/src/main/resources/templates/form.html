@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="fragments/layout :: body">
+<body>
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Create New Shipment</h5>
+            </div>
+            <div class="card-body">
+                <form th:action="@{/shipments}" th:object="${shipment}" method="post">
+
+                    <!-- Customer Username -->
+                    <div class="mb-3">
+                        <label class="form-label">Customer Username</label>
+                        <input type="text" th:field="*{customerName}" class="form-control" placeholder="Enter customer username" required>
+                    </div>
+
+                    <!-- Source -->
+                    <div class="mb-3">
+                        <label class="form-label">Source Location</label>
+                        <input type="text" th:field="*{src}" class="form-control" placeholder="Enter pickup location" required>
+                    </div>
+
+                    <!-- Destination -->
+                    <div class="mb-3">
+                        <label class="form-label">Destination Location</label>
+                        <input type="text" th:field="*{dst}" class="form-control" placeholder="Enter destination location" required>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="d-flex justify-content-between">
+                        <a href="/shipments" class="btn btn-secondary">Cancel</a>
+                        <button type="submit" class="btn btn-success">Create Shipment</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

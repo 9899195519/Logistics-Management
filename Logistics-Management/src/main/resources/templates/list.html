@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Shipments</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body class="container mt-4">
+<h2>All Shipments</h2>
+<a href="/shipments/new" class="btn btn-primary mb-2">+ New Shipment</a>
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th><th>Customer</th><th>Source</th><th>Destination</th><th>Status</th><th>Created At</th>
+    </tr>
+    <tr th:each="s : ${shipments}">
+        <td th:text="${s.id}"></td>
+        <td th:text="${s.customerName}"></td>
+        <td th:text="${s.source}"></td>
+        <td th:text="${s.destination}"></td>
+        <td th:text="${s.status}"></td>
+        <td th:text="${s.createdAt}"></td>
+    </tr>
+</table>
+</body>
+</html>
