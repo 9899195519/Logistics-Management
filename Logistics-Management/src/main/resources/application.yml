@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: Logistics-Management
+  cassandra:
+    contact-points: localhost
+    port: 9042
+    local-datacenter: datacenter1
