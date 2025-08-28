@@ -3,13 +3,14 @@ spring:
     name: Logistics-Management
 
   cassandra:
-    contact-points: localhost
+    contact-points: 172.30.37.96
     port: 9042
     local-datacenter: datacenter1
-    session-keyspace: logistics_db
+    keyspace-name: logistics_db
     schema-action: create_if_not_exists
     username: cassandra
     password: cassandra
+
   thymeleaf:
     cache: false
 

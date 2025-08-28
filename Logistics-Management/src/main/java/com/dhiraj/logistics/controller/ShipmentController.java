@@ -6,10 +6,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/shipments")
@@ -30,8 +29,24 @@ public class ShipmentController {
     }
 
     @PostMapping
-    public String saveShipment(@ModelAttribute Shipment shipment) {
-        shipmentService.createShipment(shipment);
+    public String saveOrUpdateShipment(@ModelAttribute Shipment shipment) {
+        if(shipment.getId() !=null){
+        shipmentService.updateShipment(shipment.getId(),shipment);
+        }
+        else {
+            shipmentService.createShipment(shipment);
+        }
         return "redirect:/shipments";
+    }
+    @GetMapping("/edit/{id}")
+    public String updateShipment(@PathVariable UUID id,Model model){
+        model.addAttribute("shipment",shipmentService.getShipmentById(id));
+        return "shipments/update";
+    }
+    @GetMapping("/delete/{id}")
+        public String deleteShipment(@PathVariable UUID id){
+        shipmentService.deleteShipment(id);
+        return "redirect:/shipments";
+
     }
 }
